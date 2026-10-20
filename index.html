@@ -1,153 +1,175 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Max Steinmeyer | Página Profesional</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #263445;
-            background: #f3f5f8;
-            line-height: 1.7;
-        }
-
-        header {
-            background: #17365d;
-            color: white;
-            text-align: center;
-            padding: 55px 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-
-        header p {
-            font-size: 18px;
-        }
-
-        nav {
-            background: #102640;
-            padding: 14px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 12px;
-            font-size: 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 18px;
-        }
-
-        section {
-            background: white;
-            padding: 25px;
-            margin-bottom: 22px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px #0000000d;
-        }
-
-        h2 {
-            color: #17365d;
-            margin-top: 0;
-        }
-
-        footer {
-            background: #17365d;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 28px;
-            }
-
-            nav a {
-                display: inline-block;
-                margin: 5px 8px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MSC Consultoría Académica: asesoría, gestión y desarrollo de programas educativos y culturales.">
+  <title>MSC Consultoría Académica | Educación, Cultura y Conocimiento</title>
+  <style>
+    :root { --navy:#17365d; --navy-dark:#102744; --gold:#b8944a; --ink:#243247; --muted:#5d6b7d; --paper:#f5f7fa; --white:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:var(--ink); line-height:1.65; background:#fff; }
+    a { color:inherit; }
+    .wrap { width:min(1120px, 92%); margin:auto; }
+    header { background:var(--white); border-bottom:1px solid #e4e9ef; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:14px; min-width:0; text-decoration:none; }
+    .brand img { width:94px; height:76px; object-fit:contain; }
+    .brand-text strong { display:block; color:var(--navy); font-size:1.05rem; letter-spacing:.06em; }
+    .brand-text span { display:block; color:var(--muted); font-size:.82rem; }
+    nav { display:flex; gap:22px; flex-wrap:wrap; justify-content:flex-end; }
+    nav a { text-decoration:none; font-weight:700; font-size:.92rem; color:var(--navy); }
+    nav a:hover { color:var(--gold); }
+    .hero { background:linear-gradient(125deg,var(--navy-dark),var(--navy)); color:#fff; padding:82px 0 76px; }
+    .hero-grid { display:grid; grid-template-columns:1.5fr .8fr; gap:48px; align-items:center; }
+    .eyebrow { color:#e5c982; text-transform:uppercase; letter-spacing:.15em; font-size:.8rem; font-weight:700; }
+    h1 { font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.1; margin:12px 0 20px; }
+    .hero p { max-width:680px; color:#e8eef6; font-size:1.12rem; }
+    .hero .motto { font-weight:700; color:#fff; margin-top:24px; }
+    .hero-logo { background:#fff; border-radius:18px; padding:18px; box-shadow:0 18px 40px #0002; }
+    .hero-logo img { width:100%; display:block; height:auto; }
+    .button { display:inline-block; margin-top:16px; background:var(--gold); color:#152941; padding:12px 20px; border-radius:6px; text-decoration:none; font-weight:700; }
+    section { padding:68px 0; }
+    section.alt { background:var(--paper); }
+    .section-title { color:var(--navy); font-size:clamp(1.7rem,3vw,2.35rem); line-height:1.2; margin:0 0 12px; }
+    .lead { color:var(--muted); max-width:790px; margin:0 0 30px; font-size:1.05rem; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .card { background:#fff; border:1px solid #e4e9ef; border-radius:12px; padding:25px; box-shadow:0 6px 20px #142b4510; }
+    .card .num { color:var(--gold); font-size:.85rem; font-weight:800; letter-spacing:.12em; }
+    h3 { color:var(--navy); margin:8px 0 10px; font-size:1.2rem; }
+    .card p { margin:0; color:var(--muted); }
+    .audiences { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .pill { border:1px solid #d9e0e9; border-radius:30px; padding:8px 14px; color:var(--navy); background:#fff; font-weight:700; font-size:.9rem; }
+    .director-grid { display:grid; grid-template-columns:240px 1fr; gap:34px; align-items:start; }
+    .portrait { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; border-radius:12px; background:#e7edf4; }
+    .portrait-placeholder { background:#e8edf4; color:var(--navy); border-radius:12px; min-height:240px; display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; }
+    .director-note { color:var(--muted); }
+    .contact { background:var(--navy-dark); color:#fff; }
+    .contact .section-title { color:#fff; }
+    .contact .lead { color:#e1e9f3; }
+    .contact-panel { border:1px solid #ffffff40; border-radius:12px; padding:24px; max-width:760px; }
+    footer { background:#0b1d31; color:#d2dbe6; padding:22px 0; font-size:.88rem; }
+    footer .foot { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    @media(max-width:760px) {
+      .topbar { align-items:flex-start; flex-direction:column; }
+      nav { justify-content:flex-start; gap:14px; }
+      .hero { padding:55px 0; }
+      .hero-grid,.director-grid { grid-template-columns:1fr; }
+      .hero-logo { max-width:340px; }
+      .cards { grid-template-columns:1fr; }
+      .portrait { max-width:240px; }
+      section { padding:52px 0; }
+    }
+  </style>
 </head>
-
 <body>
-
-    <header>
-        <h1>Max Steinmeyer Celis</h1>
-        <p>Trayectoria profesional, docencia e historia</p>
-    </header>
-
-    <nav>
-        <a href="#presentacion">Presentación</a>
-        <a href="#trayectoria">Trayectoria</a>
-        <a href="#docencia">Docencia</a>
-        <a href="#historia">Historia</a>
+<header>
+  <div class="wrap topbar">
+    <a class="brand" href="#inicio" aria-label="MSC Consultoría Académica, inicio">
+      <img src="logo-msc.png" alt="Logo MSC Consultoría Académica">
+      <span class="brand-text"><strong>MSC CONSULTORÍA ACADÉMICA</strong><span>Educación · Cultura · Conocimiento</span></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#instituciones">A quiénes apoyamos</a>
+      <a href="#direccion">Dirección</a>
+      <a href="#contacto">Contacto</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <section id="presentacion">
-            <h2>Presentación</h2>
-            <p>
-                Bienvenidos a mi página personal y profesional.
-                Este espacio está dedicado a compartir mi trayectoria,
-                mis experiencias profesionales y mis intereses
-                en el ámbito de la defensa, la docencia y la historia.
-            </p>
-        </section>
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Educación · Cultura · Conocimiento</div>
+        <h1>Ideas que forman.<br>Conocimiento que conecta.</h1>
+        <p>MSC Consultoría Académica ofrece asesoría, gestión y desarrollo de iniciativas educativas y culturales para instituciones que buscan compartir conocimiento, fortalecer la formación y acercar la cultura a sus comunidades.</p>
+        <p class="motto">Experiencia, conocimiento y compromiso con la formación.</p>
+        <a class="button" href="#servicios">Conozca nuestros servicios</a>
+      </div>
+      <div class="hero-logo"><img src="logo-msc.png" alt="MSC Consultoría Académica"></div>
+    </div>
+  </section>
 
-        <section id="trayectoria">
-            <h2>Trayectoria profesional</h2>
-            <p>
-                Coronel en retiro del Ejército de Chile.
-                Mi trayectoria profesional ha estado vinculada
-                al ámbito militar, la planificación y el sostenimiento.
-            </p>
-        </section>
+  <section id="servicios">
+    <div class="wrap">
+      <h2 class="section-title">Nuestros servicios</h2>
+      <p class="lead">Diseñamos y apoyamos actividades que promueven el aprendizaje, el intercambio de ideas y la difusión cultural, adaptadas a los objetivos de cada institución.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="num">01 / ASESORÍA</div>
+          <h3>Asesoría y gestión académica</h3>
+          <p>Apoyo en la planificación, organización y desarrollo de programas de pregrado, posgrado y formación continua.</p>
+        </article>
+        <article class="card">
+          <div class="num">02 / FORMACIÓN</div>
+          <h3>Talleres y actividades formativas</h3>
+          <p>Diseño y coordinación de talleres para personas adultas, organizaciones comunitarias e instituciones públicas y privadas.</p>
+        </article>
+        <article class="card">
+          <div class="num">03 / DIFUSIÓN</div>
+          <h3>Charlas y conferencias</h3>
+          <p>Preparación y realización de encuentros sobre historia, historia militar, defensa, estrategia y otros temas de interés educativo y cultural.</p>
+        </article>
+        <article class="card">
+          <div class="num">04 / PROYECTOS</div>
+          <h3>Iniciativas educativas y culturales</h3>
+          <p>Asesoría para diseñar, organizar y desarrollar proyectos que contribuyan a la difusión del conocimiento y la participación cultural.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <section id="docencia">
-            <h2>Docencia y formación</h2>
-            <p>
-                La enseñanza y la formación profesional han sido
-                una parte importante de mi trayectoria, especialmente
-                en materias relacionadas con el apoyo al combate,
-                el sostenimiento y los estudios militares.
-            </p>
-        </section>
+  <section class="alt" id="instituciones">
+    <div class="wrap">
+      <h2 class="section-title">Colaboramos con distintas instituciones</h2>
+      <p class="lead">Trabajamos con organizaciones que valoran la educación, la formación de personas y el acceso a la cultura.</p>
+      <div class="audiences">
+        <span class="pill">Universidades e institutos</span>
+        <span class="pill">Municipalidades</span>
+        <span class="pill">Corporaciones culturales</span>
+        <span class="pill">Fundaciones</span>
+        <span class="pill">Organizaciones comunitarias</span>
+        <span class="pill">Instituciones públicas y privadas</span>
+      </div>
+    </div>
+  </section>
 
-        <section id="historia">
-            <h2>Historia e investigación</h2>
-            <p>
-                En esta sección compartiré artículos, investigaciones,
-                documentos y reflexiones sobre historia militar,
-                defensa y acontecimientos relevantes de Chile.
-            </p>
-        </section>
-    </main>
+  <section id="direccion">
+    <div class="wrap director-grid">
+      <div>
+        <img class="portrait" src="perfil.png" alt="Retrato del director de MSC Consultoría Académica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portrait-placeholder" style="display:none">Retrato del director<br><small>Puede incorporar aquí su fotografía</small></div>
+      </div>
+      <div>
+        <h2 class="section-title">Dirección y experiencia profesional</h2>
+        <p>MSC Consultoría Académica es dirigida por un profesional con experiencia en docencia, formación y desarrollo de contenidos académicos, con especial interés en la historia, la defensa, la estrategia y la difusión del conocimiento.</p>
+        <p class="director-note">La empresa busca poner esa experiencia al servicio de instituciones educativas y culturales, mediante actividades serias, bien planificadas y adaptadas a las necesidades de cada público.</p>
+        <p class="director-note"><strong>Director:</strong> Max Steinmeyer Celis</p>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>© 2026 · Página personal y profesional</p>
-    </footer>
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <h2 class="section-title">Conversemos sobre su próximo proyecto</h2>
+      <p class="lead">Si su institución desea desarrollar un programa académico, taller, charla, conferencia o iniciativa cultural, estaremos disponibles para conversar sobre sus objetivos.</p>
+      <div class="contact-panel">
+        <strong>MSC Consultoría Académica</strong>
+        <p>Educación · Cultura · Conocimiento</p>
+        <p>Para incorporar un correo electrónico, teléfono o formulario de contacto, podemos añadirlo cuando usted decida qué datos desea publicar.</p>
+      </div>
+    </div>
+  </section>
+</main>
 
+<footer>
+  <div class="wrap foot">
+    <span>© MSC Consultoría Académica</span>
+    <span>Educación · Cultura · Conocimiento</span>
+  </div>
+</footer>
 </body>
 </html>

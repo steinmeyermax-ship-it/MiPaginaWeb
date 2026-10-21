@@ -39,6 +39,11 @@
     .card .num { color:var(--gold); font-size:.85rem; font-weight:800; letter-spacing:.12em; }
     h3 { color:var(--navy); margin:8px 0 10px; font-size:1.2rem; }
     .card p { margin:0; color:var(--muted); }
+    .program-links { display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:16px; }
+    .program-links a { display:inline-block; color:var(--navy); font-weight:700; text-decoration:none; border:1px solid #d9e0e9; border-left:4px solid var(--gold); border-radius:6px; padding:9px 12px; background:#fff; }
+    .program-links a:hover { background:var(--paper); text-decoration:underline; }
+    .program-note { margin-top:12px !important; font-size:.9rem; }
+
     .audiences { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
     .pill { border:1px solid #d9e0e9; border-radius:30px; padding:8px 14px; color:var(--navy); background:#fff; font-weight:700; font-size:.9rem; }
     .director-grid { display:grid; grid-template-columns:240px 1fr; gap:34px; align-items:start; }
@@ -51,7 +56,19 @@
     .contact-panel { border:1px solid #ffffff40; border-radius:12px; padding:24px; max-width:760px; }
     footer { background:#0b1d31; color:#d2dbe6; padding:22px 0; font-size:.88rem; }
     footer .foot { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
-    @media(max-width:760px) {
+
+    .gallery-tabs { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 26px; }
+    .gallery-tab { border:1px solid #d9e0e9; border-radius:30px; padding:10px 18px; color:var(--navy); background:#fff; font-weight:700; cursor:pointer; }
+    .gallery-tab[aria-pressed="true"], .gallery-tab:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .gallery-item { margin:0; border:1px solid #e4e9ef; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 6px 20px #142b4510; }
+    .gallery-item[hidden] { display:none; }
+    .gallery-item a { display:block; }
+    .gallery-item img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
+    .gallery-item figcaption { padding:13px 15px; color:var(--navy); font-weight:700; }
+    .gallery-empty { border:1px dashed #cbd5e1; border-radius:12px; padding:24px; color:var(--muted); background:#fff; }
+    @media(max-width:760px) { .gallery-grid { grid-template-columns:1fr; } }
+\n    @media(max-width:760px) {
       .topbar { align-items:flex-start; flex-direction:column; }
       nav { justify-content:flex-start; gap:14px; }
       .hero { padding:55px 0; }
@@ -71,7 +88,7 @@
       <span class="brand-text"><strong>MSC CONSULTORÍA ACADÉMICA</strong><span>Educación · Cultura · Conocimiento</span></span>
     </a>
     <nav aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a>
+      <a href="#servicios">Servicios</a>\n      <a href="#iniciativas">Iniciativas</a>
       <a href="#instituciones">A quiénes apoyamos</a>
       <a href="#direccion">Dirección</a>
       <a href="#contacto">Contacto</a>
@@ -100,13 +117,21 @@
       <div class="cards">
         <article class="card">
           <div class="num">01 / ASESORÍA</div>
-          <h3>Asesoría y gestión académica</h3>
-          <p>Apoyo en la planificación, organización y desarrollo de programas de pregrado, posgrado y formación continua.</p>
+          <h3>Programas académicos y diplomados</h3>
+          <p>Programas de formación continua en pensamiento estratégico y análisis geopolítico.</p>
+          <div class="program-links">
+            <a href="programa-diplomado-pensamiento-estrategico.pdf" target="_blank" rel="noopener">Ver programa del diplomado en PDF</a>
+          </div>
         </article>
         <article class="card">
           <div class="num">02 / FORMACIÓN</div>
           <h3>Talleres y actividades formativas</h3>
           <p>Diseño y coordinación de talleres para personas adultas, organizaciones comunitarias e instituciones públicas y privadas.</p>
+          <div class="program-links">
+            <a href="programa-taller-estrategia-y-conflicto-I.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto I (PDF)</a>
+            <a href="programa-taller-estrategia-y-conflicto-II.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto II (PDF)</a>
+            <a href="programa-taller-estrategia-y-conflicto-III.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto III (PDF)</a>
+          </div>
         </article>
         <article class="card">
           <div class="num">03 / DIFUSIÓN</div>
@@ -122,7 +147,93 @@
     </div>
   </section>
 
-  <section class="alt" id="instituciones">
+
+  <section class="alt" id="iniciativas">
+    <div class="wrap">
+      <h2 class="section-title">Iniciativas y actividades realizadas</h2>
+      <p class="lead">Un registro visual de las actividades académicas, visitas y encuentros de MSC Consultoría Académica.</p>
+      <div class="gallery-tabs" role="group" aria-label="Filtrar actividades">
+        <button class="gallery-tab" type="button" data-filter="clases" aria-pressed="true">Clases</button>
+        <button class="gallery-tab" type="button" data-filter="visitas" aria-pressed="false">Visitas</button>
+        <button class="gallery-tab" type="button" data-filter="convivencias" aria-pressed="false">Convivencias</button>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-01.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Sesión académica — participantes">
+            <img src="Clases/clase-01.jpeg" alt="Sesión académica — participantes" loading="lazy">
+          </a>
+          <figcaption>Sesión académica — participantes</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-02.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Exposición del profesor">
+            <img src="Clases/clase-02.jpeg" alt="Exposición del profesor" loading="lazy">
+          </a>
+          <figcaption>Exposición del profesor</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-03.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Presentación y debate">
+            <img src="Clases/clase-03.jpeg" alt="Presentación y debate" loading="lazy">
+          </a>
+          <figcaption>Presentación y debate</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-04.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Desarrollo de la sesión">
+            <img src="Clases/clase-04.jpeg" alt="Desarrollo de la sesión" loading="lazy">
+          </a>
+          <figcaption>Desarrollo de la sesión</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-01.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Visita cultural e histórica">
+            <img src="Visitas/visita-01.jpg" alt="Visita cultural e histórica" loading="lazy">
+          </a>
+          <figcaption>Visita cultural e histórica</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-02.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Recorrido por el museo">
+            <img src="Visitas/visita-02.jpg" alt="Recorrido por el museo" loading="lazy">
+          </a>
+          <figcaption>Recorrido por el museo</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-03.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Actividad de visita">
+            <img src="Visitas/visita-03.jpg" alt="Actividad de visita" loading="lazy">
+          </a>
+          <figcaption>Actividad de visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-04.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Encuentro durante la visita">
+            <img src="Visitas/visita-04.jpg" alt="Encuentro durante la visita" loading="lazy">
+          </a>
+          <figcaption>Encuentro durante la visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-05.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Fotografía grupal de la visita">
+            <img src="Visitas/visita-05.jpg" alt="Fotografía grupal de la visita" loading="lazy">
+          </a>
+          <figcaption>Fotografía grupal de la visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-01.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Encuentro de camaradería">
+            <img src="Convivencias/convivencia-01.jpeg" alt="Encuentro de camaradería" loading="lazy">
+          </a>
+          <figcaption>Encuentro de camaradería</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-02.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Conversación y convivencia">
+            <img src="Convivencias/convivencia-02.jpeg" alt="Conversación y convivencia" loading="lazy">
+          </a>
+          <figcaption>Conversación y convivencia</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-03.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Un momento de camaradería">
+            <img src="Convivencias/convivencia-03.jpeg" alt="Un momento de camaradería" loading="lazy">
+          </a>
+          <figcaption>Un momento de camaradería</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+\n  <section class="alt" id="instituciones">
     <div class="wrap">
       <h2 class="section-title">Colaboramos con distintas instituciones</h2>
       <p class="lead">Trabajamos con organizaciones que valoran la educación, la formación de personas y el acceso a la cultura.</p>
@@ -173,5 +284,24 @@
     <span>Educación · Cultura · Conocimiento</span>
   </div>
 </footer>
-</body>
+
+<script>
+  (function () {
+    const buttons = document.querySelectorAll('.gallery-tab');
+    const items = document.querySelectorAll('.gallery-item');
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const filter = button.dataset.filter;
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
+        items.forEach(function (item) {
+          item.hidden = item.dataset.category !== filter;
+        });
+      });
+    });
+    items.forEach(function (item) {
+      item.hidden = item.dataset.category !== 'clases';
+    });
+  })();
+</script>
+\n</body>
 </html>

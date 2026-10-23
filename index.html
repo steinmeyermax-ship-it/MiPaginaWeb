@@ -1,79 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MSC Consultoría Académica: asesoría, gestión y desarrollo de programas educativos y culturales.">
+  <title>MSC Consultoría Académica | Educación, Cultura y Conocimiento</title>
+  <style>
+    :root { --navy:#17365d; --navy-dark:#102744; --gold:#b8944a; --ink:#243247; --muted:#5d6b7d; --paper:#f5f7fa; --white:#fff; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; color:var(--ink); line-height:1.65; background:#fff; }
+    a { color:inherit; }
+    .wrap { width:min(1120px, 92%); margin:auto; }
+    header { background:var(--white); border-bottom:1px solid #e4e9ef; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:14px; min-width:0; text-decoration:none; }
+    .brand img { width:94px; height:76px; object-fit:contain; }
+    .brand-text strong { display:block; color:var(--navy); font-size:1.05rem; letter-spacing:.06em; }
+    .brand-text span { display:block; color:var(--muted); font-size:.82rem; }
+    nav { display:flex; gap:22px; flex-wrap:wrap; justify-content:flex-end; }
+    nav a { text-decoration:none; font-weight:700; font-size:.92rem; color:var(--navy); }
+    nav a:hover { color:var(--gold); }
+    .hero { background:linear-gradient(125deg,var(--navy-dark),var(--navy)); color:#fff; padding:82px 0 76px; }
+    .hero-grid { display:grid; grid-template-columns:1.5fr .8fr; gap:48px; align-items:center; }
+    .eyebrow { color:#e5c982; text-transform:uppercase; letter-spacing:.15em; font-size:.8rem; font-weight:700; }
+    h1 { font-size:clamp(2.2rem,5vw,3.8rem); line-height:1.1; margin:12px 0 20px; }
+    .hero p { max-width:680px; color:#e8eef6; font-size:1.12rem; }
+    .hero .motto { font-weight:700; color:#fff; margin-top:24px; }
+    .hero-logo { background:#fff; border-radius:18px; padding:18px; box-shadow:0 18px 40px #0002; }
+    .hero-logo img { width:100%; display:block; height:auto; }
+    .button { display:inline-block; margin-top:16px; background:var(--gold); color:#152941; padding:12px 20px; border-radius:6px; text-decoration:none; font-weight:700; }
+    section { padding:68px 0; }
+    section.alt { background:var(--paper); }
+    .section-title { color:var(--navy); font-size:clamp(1.7rem,3vw,2.35rem); line-height:1.2; margin:0 0 12px; }
+    .lead { color:var(--muted); max-width:790px; margin:0 0 30px; font-size:1.05rem; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .card { background:#fff; border:1px solid #e4e9ef; border-radius:12px; padding:25px; box-shadow:0 6px 20px #142b4510; }
+    .card .num { color:var(--gold); font-size:.85rem; font-weight:800; letter-spacing:.12em; }
+    h3 { color:var(--navy); margin:8px 0 10px; font-size:1.2rem; }
+    .card p { margin:0; color:var(--muted); }
+    .program-links { display:flex; flex-direction:column; align-items:flex-start; gap:9px; margin-top:16px; }
+    .program-links a { display:inline-block; color:var(--navy); font-weight:700; text-decoration:none; border:1px solid #d9e0e9; border-left:4px solid var(--gold); border-radius:6px; padding:9px 12px; background:#fff; }
+    .program-links a:hover { background:var(--paper); text-decoration:underline; }
+    .program-note { margin-top:12px !important; font-size:.9rem; }
+
+    .audiences { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .pill { border:1px solid #d9e0e9; border-radius:30px; padding:8px 14px; color:var(--navy); background:#fff; font-weight:700; font-size:.9rem; }
+    .director-grid { display:grid; grid-template-columns:240px 1fr; gap:34px; align-items:start; }
+    .portrait { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; border-radius:12px; background:#e7edf4; }
+    .portrait-placeholder { background:#e8edf4; color:var(--navy); border-radius:12px; min-height:240px; display:flex; align-items:center; justify-content:center; text-align:center; padding:18px; }
+    .director-note { color:var(--muted); }
+    .contact { background:var(--navy-dark); color:#fff; }
+    .contact .section-title { color:#fff; }
+    .contact .lead { color:#e1e9f3; }
+    .contact-panel { border:1px solid #ffffff40; border-radius:12px; padding:24px; max-width:760px; }
+    footer { background:#0b1d31; color:#d2dbe6; padding:22px 0; font-size:.88rem; }
+    footer .foot { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+
+    .gallery-tabs { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 26px; }
+    .gallery-tab { border:1px solid #d9e0e9; border-radius:30px; padding:10px 18px; color:var(--navy); background:#fff; font-weight:700; cursor:pointer; }
+    .gallery-tab[aria-pressed="true"], .gallery-tab:hover { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .gallery-item { margin:0; border:1px solid #e4e9ef; border-radius:12px; overflow:hidden; background:#fff; box-shadow:0 6px 20px #142b4510; }
+    .gallery-item[hidden] { display:none; }
+    .gallery-item a { display:block; }
+    .gallery-item img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; }
+    .gallery-item figcaption { padding:13px 15px; color:var(--navy); font-weight:700; }
+    .gallery-empty { border:1px dashed #cbd5e1; border-radius:12px; padding:24px; color:var(--muted); background:#fff; }
+    @media(max-width:760px) { .gallery-grid { grid-template-columns:1fr; } }
+
+    @media(max-width:760px) {
+      .topbar { align-items:flex-start; flex-direction:column; }
+      nav { justify-content:flex-start; gap:14px; }
+      .hero { padding:55px 0; }
+      .hero-grid,.director-grid { grid-template-columns:1fr; }
+      .hero-logo { max-width:340px; }
+      .cards { grid-template-columns:1fr; }
+      .portrait { max-width:240px; }
+      section { padding:52px 0; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <a class="brand" href="#inicio" aria-label="MSC Consultoría Académica, inicio">
+      <img src="logo-msc.png" alt="Logo MSC Consultoría Académica">
+      <span class="brand-text"><strong>MSC CONSULTORÍA ACADÉMICA</strong><span>Educación · Cultura · Conocimiento</span></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#servicios">Servicios</a>      <a href="#iniciativas">Iniciativas</a>
+      <a href="#instituciones">A quiénes apoyamos</a>
+      <a href="#direccion">Dirección</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Educación · Cultura · Conocimiento</div>
+        <h1>Ideas que forman.<br>Conocimiento que conecta.</h1>
+        <p>MSC Consultoría Académica ofrece asesoría, gestión y desarrollo de iniciativas educativas y culturales para instituciones que buscan compartir conocimiento, fortalecer la formación y acercar la cultura a sus comunidades.</p>
+        <p class="motto">Experiencia, conocimiento y compromiso con la formación.</p>
+        <a class="button" href="#servicios">Conozca nuestros servicios</a>
+      </div>
+      <div class="hero-logo"><img src="logo-msc.png" alt="MSC Consultoría Académica"></div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <h2 class="section-title">Nuestros servicios</h2>
+      <p class="lead">Diseñamos y apoyamos actividades que promueven el aprendizaje, el intercambio de ideas y la difusión cultural, adaptadas a los objetivos de cada institución.</p>
+      <div class="cards">
+        <article class="card">
+          <div class="num">01 / ASESORÍA</div>
+          <h3>Programas académicos y diplomados</h3>
+          <p>Programas de formación continua en pensamiento estratégico y análisis geopolítico.</p>
+          <div class="program-links">
+            <a href="programa-diplomado-pensamiento-estrategico.pdf" target="_blank" rel="noopener">Ver programa del diplomado en PDF</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="num">02 / FORMACIÓN</div>
+          <h3>Talleres y actividades formativas</h3>
+          <p>Diseño y coordinación de talleres para personas adultas, organizaciones comunitarias e instituciones públicas y privadas.</p>
+          <div class="program-links">
+            <a href="programa-taller-estrategia-y-conflicto-I.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto I (PDF)</a>
+            <a href="programa-taller-estrategia-y-conflicto-II.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto II (PDF)</a>
+            <a href="programa-taller-estrategia-y-conflicto-III.pdf" target="_blank" rel="noopener">Ver programa Estrategia y Conflicto III (PDF)</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="num">03 / DIFUSIÓN</div>
+          <h3>Charlas y conferencias</h3>
+          <p>Preparación y realización de encuentros sobre historia, historia militar, defensa, estrategia y otros temas de interés educativo y cultural.</p>
+        </article>
+        <article class="card">
+          <div class="num">04 / PROYECTOS</div>
+          <h3>Iniciativas educativas y culturales</h3>
+          <p>Asesoría para diseñar, organizar y desarrollar proyectos que contribuyan a la difusión del conocimiento y la participación cultural.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="alt" id="iniciativas">
+    <div class="wrap">
+      <h2 class="section-title">Iniciativas y actividades realizadas</h2>
+      <p class="lead">Un registro visual de las actividades académicas, visitas y encuentros de MSC Consultoría Académica.</p>
+      <div class="gallery-tabs" role="group" aria-label="Filtrar actividades">
+        <button class="gallery-tab" type="button" data-filter="clases" aria-pressed="true">Clases</button>
+        <button class="gallery-tab" type="button" data-filter="visitas" aria-pressed="false">Visitas</button>
+        <button class="gallery-tab" type="button" data-filter="convivencias" aria-pressed="false">Convivencias</button>
+      </div>
+      <div class="gallery-grid" id="gallery-grid">
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-01.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Sesión académica — participantes">
+            <img src="Clases/clase-01.jpeg" alt="Sesión académica — participantes" loading="lazy">
+          </a>
+          <figcaption>Sesión académica — participantes</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-02.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Exposición del profesor">
+            <img src="Clases/clase-02.jpeg" alt="Exposición del profesor" loading="lazy">
+          </a>
+          <figcaption>Exposición del profesor</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-03.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Presentación y debate">
+            <img src="Clases/clase-03.jpeg" alt="Presentación y debate" loading="lazy">
+          </a>
+          <figcaption>Presentación y debate</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="clases">
+          <a href="Clases/clase-04.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Desarrollo de la sesión">
+            <img src="Clases/clase-04.jpeg" alt="Desarrollo de la sesión" loading="lazy">
+          </a>
+          <figcaption>Desarrollo de la sesión</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-01.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Visita cultural e histórica">
+            <img src="Visitas/visita-01.jpg" alt="Visita cultural e histórica" loading="lazy">
+          </a>
+          <figcaption>Visita cultural e histórica</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-02.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Recorrido por el museo">
+            <img src="Visitas/visita-02.jpg" alt="Recorrido por el museo" loading="lazy">
+          </a>
+          <figcaption>Recorrido por el museo</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-03.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Actividad de visita">
+            <img src="Visitas/visita-03.jpg" alt="Actividad de visita" loading="lazy">
+          </a>
+          <figcaption>Actividad de visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-04.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Encuentro durante la visita">
+            <img src="Visitas/visita-04.jpg" alt="Encuentro durante la visita" loading="lazy">
+          </a>
+          <figcaption>Encuentro durante la visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="visitas">
+          <a href="Visitas/visita-05.jpg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Fotografía grupal de la visita">
+            <img src="Visitas/visita-05.jpg" alt="Fotografía grupal de la visita" loading="lazy">
+          </a>
+          <figcaption>Fotografía grupal de la visita</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-01.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Encuentro de camaradería">
+            <img src="Convivencias/convivencia-01.jpeg" alt="Encuentro de camaradería" loading="lazy">
+          </a>
+          <figcaption>Encuentro de camaradería</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-02.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Conversación y convivencia">
+            <img src="Convivencias/convivencia-02.jpeg" alt="Conversación y convivencia" loading="lazy">
+          </a>
+          <figcaption>Conversación y convivencia</figcaption>
+        </figure>
+        <figure class="gallery-item" data-category="convivencias">
+          <a href="Convivencias/convivencia-03.jpeg" target="_blank" rel="noopener" aria-label="Ampliar fotografía: Un momento de camaradería">
+            <img src="Convivencias/convivencia-03.jpeg" alt="Un momento de camaradería" loading="lazy">
+          </a>
+          <figcaption>Un momento de camaradería</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="instituciones">
+    <div class="wrap">
+      <h2 class="section-title">Colaboramos con distintas instituciones</h2>
+      <p class="lead">Trabajamos con organizaciones que valoran la educación, la formación de personas y el acceso a la cultura.</p>
+      <div class="audiences">
+        <span class="pill">Universidades e institutos</span>
+        <span class="pill">Municipalidades</span>
+        <span class="pill">Corporaciones culturales</span>
+        <span class="pill">Fundaciones</span>
+        <span class="pill">Organizaciones comunitarias</span>
+        <span class="pill">Instituciones públicas y privadas</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="direccion">
+    <div class="wrap director-grid">
+      <div>
+        <img class="portrait" src="perfil.png" alt="Retrato del director de MSC Consultoría Académica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="portrait-placeholder" style="display:none">Retrato del director<br><small>Puede incorporar aquí su fotografía</small></div>
+      </div>
+      <div>
+        <h2 class="section-title">Dirección y experiencia profesional</h2>
+        <p>MSC Consultoría Académica es dirigida por un profesional con experiencia en docencia, formación y desarrollo de contenidos académicos, con especial interés en la historia, la defensa, la estrategia y la difusión del conocimiento.</p>
+        <p class="director-note">La empresa busca poner esa experiencia al servicio de instituciones educativas y culturales, mediante actividades serias, bien planificadas y adaptadas a las necesidades de cada público.</p>
+        <p class="director-note"><strong>Director:</strong> Max Steinmeyer Celis</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap">
+      <h2 class="section-title">Conversemos sobre su próximo proyecto</h2>
+      <p class="lead">Si necesita desarrollar un programa académico, talleres, charlas, conferencias o iniciativas culturales, estaremos disponibles para conversar sobre sus objetivos.</p>
+      <div class="contact-panel">
+        <strong>MSC Consultoría Académica</strong>
+        <p>Educación · Cultura · Conocimiento</p>
+      <p>Contacto: <a href="mailto:msc.consultoria.academica@gmail.com">msc.consultoria.academica@gmail.com</a></p>
+        <p>Teléfono: <a href="tel:+56997485740">+56 9 9748 5740</a></p>
+<p>WhatsApp: <a href="https://wa.me/56997485740" target="_blank">Contactar por WhatsApp</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© MSC Consultoría Académica</span>
+    <span>Educación · Cultura · Conocimiento</span>
+  </div>
+</footer>
+
 <script>
   (function () {
-    const cards = document.querySelectorAll('#servicios .card');
-    const gallery = document.getElementById('iniciativas');
     const buttons = document.querySelectorAll('.gallery-tab');
     const items = document.querySelectorAll('.gallery-item');
-
-    // Ocultar inicialmente los programas PDF y la galería.
-    document.querySelectorAll('.program-links').forEach(function (links) {
-      links.hidden = true;
-    });
-
-    gallery.hidden = true;
-
-    // Preparar el espacio para futuras fotos de charlas y conferencias.
-    const diffusionPanel = document.createElement('div');
-    diffusionPanel.className = 'program-links';
-    diffusionPanel.hidden = true;
-    diffusionPanel.innerHTML =
-      '<p class="program-note">Aquí se mostrarán las fotografías de charlas y conferencias.</p>';
-    cards[2].appendChild(diffusionPanel);
-
-    cards.forEach(function (card, index) {
-      card.style.cursor = 'pointer';
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('role', 'button');
-      card.setAttribute('aria-expanded', 'false');
-
-      function toggleCard() {
-        const isOpen = card.getAttribute('aria-expanded') === 'true';
-
-        // Cerrar el contenido de este cuadro si ya está abierto.
-        card.setAttribute('aria-expanded', String(!isOpen));
-
-        if (index === 0 || index === 1) {
-          card.querySelector('.program-links').hidden = isOpen;
-        } else if (index === 2) {
-          diffusionPanel.hidden = isOpen;
-        } else if (index === 3) {
-          gallery.hidden = isOpen;
-        }
-      }
-
-      card.addEventListener('click', function (event) {
-        if (event.target.closest('a')) return;
-        toggleCard();
-      });
-
-      card.addEventListener('keydown', function (event) {
-        if (event.target !== card) return;
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          toggleCard();
-        }
-      });
-    });
-
-    // Mantener los filtros actuales de Clases, Visitas y Convivencias.
     buttons.forEach(function (button) {
       button.addEventListener('click', function () {
         const filter = button.dataset.filter;
-
-        buttons.forEach(function (b) {
-          b.setAttribute('aria-pressed', String(b === button));
-        });
-
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === button)); });
         items.forEach(function (item) {
           item.hidden = item.dataset.category !== filter;
         });
       });
     });
-
     items.forEach(function (item) {
       item.hidden = item.dataset.category !== 'clases';
     });
   })();
 </script>
+
 </body>
 </html>
